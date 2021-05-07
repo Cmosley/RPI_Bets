@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'rpi_bets.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rpi_bets',
+        'NAME': 'rpibets',
     }
 }
 
