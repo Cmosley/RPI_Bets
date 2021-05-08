@@ -45,10 +45,12 @@ class Bet(models.Model):
   betting_line = models.IntegerField()
   bet_amount = models.DecimalField(max_digits=10, decimal_places=2)
 
-# class BetTrack(models.Model):
-#   user = models.ForeignKey(User, on_delete=models.CASCADE)
-#   created= models.DateTimeField('created', auto_now=False, auto_now_add=True)
+class BetTrack(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  created= models.DateTimeField('created', auto_now=False, auto_now_add=True)
 
 
-#   def __str__(self):
-#       return self.name
+  def __str__(self):
+      return self.name
+
+
