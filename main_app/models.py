@@ -3,18 +3,29 @@ from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
 
-
+from decimal import Decimal
 # Create your models here.
 
 
 
 class Profile(models.Model): 
-  total_bets: models.IntegerField()
-  total_wins: models.IntegerField()
-  bank_roll: models.IntegerField()
-  winnings: models.DecimalField('winnings', max_digits=10, decimal_places=2)
+  total_bets = models.IntegerField(default=0)
+  total_wins = models.IntegerField(default=0)
+  bank_roll = models.IntegerField(default=0)
+  # winnings = models.DecimalField(default=Decimal(0), max_digits=10, decimal_places=2)
+  winnings = models.IntegerField(default=0)
   user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+class BetTrack(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  created = models.DateTimeField('created', auto_now=False, auto_now_add=True)
+  # total_bet = models.DecimalField(default=Decimal(0), max_digits=10, decimal_places=2)
+  total_bet = models.IntegerField(default=0)
+  # total_net = models.DecimalField(default=Decimal(0), max_digits=10, decimal_places=2)
+  total_net = models.IntegerField(default=0)
+
+  def __str__(self):
+      return self.name
  
 
 class Bet(models.Model):
@@ -27,6 +38,11 @@ class Bet(models.Model):
     ('B', 'B Bet'),
     ('C', 'C Bet'),
     ('D', 'D Bet'),
+  )
+  BET_RESULT = (
+    ('Pending', 'Pending'),
+    ('Win', 'Win'),
+    ('Loss', 'Loss'),
   )
   type = models.CharField('type', 
     max_length=50,
@@ -42,15 +58,17 @@ class Bet(models.Model):
   )
   home_team = models.CharField(max_length=50)
   away_team = models.CharField(max_length=50)
-  betting_line = models.IntegerField()
-  bet_amount = models.DecimalField(max_digits=10, decimal_places=2)
+  betting_line = models.IntegerField(default=0)
+  bet_amount = models.IntegerField(default=0)
+  # bet_amount = models.DecimalField(default=Decimal(0), max_digits=10, decimal_places=2)
+  won = models.CharField(
+    choices=BET_RESULT,
+    max_length=50,
+    default=BET_RESULT[0]
+  )
 
-class BetTrack(models.Model):
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
-  created= models.DateTimeField('created', auto_now=False, auto_now_add=True)
+  bet_track = models.ForeignKey(BetTrack, default='', on_delete=models.CASCADE)
 
 
-  def __str__(self):
-      return self.name
 
 
