@@ -801,6 +801,18 @@ select {
 	margin-left: 3.5rem;
 	margin-right: 3.5rem;
 }
+.mx-0 {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.mx-4 {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+.mx-8 {
+	margin-left: 2rem;
+	margin-right: 2rem;
+}
 .-ml-2 {
 	margin-left: -0.5rem;
 }
@@ -1051,6 +1063,12 @@ select {
 .bg-indigo-600 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(79, 70, 229, var(--tw-bg-opacity));
+}
+.bg-current {
+	background-color: currentColor;
+}
+.bg-transparent {
+	background-color: transparent;
 }
 .object-cover {
 	-o-object-fit: cover;
