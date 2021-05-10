@@ -19,6 +19,20 @@ def bets_index(request):
   return render(request, 'bets/index.html',)
   # {'bettrack': betTrack, 'bets':bets}
 
+@login_required
+def bets_track(request):
+  tracks = BetTrack.objects.filter(user=request.user)
+  # track = BetTrack.objects.get(id=)
+  return render(request, 'bets/track.html', {'tracks': tracks})
+
+class BetTrackCreate(CreateView):
+  model = BetTrack
+  fields = '__all__'
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
 class BetCreate(CreateView):
   model = Bet 
   fields = ['bet_type', 'end', 'sport','home_team', 

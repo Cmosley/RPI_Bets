@@ -27,6 +27,8 @@ class BetTrack(models.Model):
 
   def __str__(self):
       return self.name
+  def get_absolute_url(self):
+      return reverse("bettrack_create")
  
 
 class Bet(models.Model):
