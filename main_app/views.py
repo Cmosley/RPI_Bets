@@ -19,6 +19,16 @@ def bets_index(request):
   return render(request, 'bets/index.html',)
   # {'bettrack': betTrack, 'bets':bets}
 
+class BetCreate(CreateView):
+  model = Bet 
+  fields = ['bet_type', 'end', 'sport','home_team', 
+  'away_team','betting_line', 'bet_amount','won' ] 
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':

@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
@@ -44,13 +45,13 @@ class Bet(models.Model):
     ('Win', 'Win'),
     ('Loss', 'Loss'),
   )
-  type = models.CharField('type', 
+  bet_type = models.CharField( 
     max_length=50,
     choices=BET_TYPES, 
     default='A'
   )
-  start = models.DateTimeField('start', auto_now=False, auto_now_add=True)
-  end = models.DateTimeField('end', auto_now=False, auto_now_add=False)
+  start = models.DateTimeField(auto_now=False, auto_now_add=True)
+  end = models.DateField()
   sport = models.CharField(
     max_length=3, 
     choices=SPORTS, 
@@ -67,7 +68,14 @@ class Bet(models.Model):
     default=BET_RESULT[0]
   )
 
-  bet_track = models.ForeignKey(BetTrack, default='', on_delete=models.CASCADE)
+  def __str__(self):
+      return self.name
+  
+  def get_absolute_url(self):
+      return reverse("bets_create")
+  
+
+  # bet_track = models.ForeignKey(BetTrack, default='', on_delete=models.CASCADE)
 
 
 
