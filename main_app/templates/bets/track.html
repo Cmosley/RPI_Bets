@@ -3,8 +3,9 @@
 <h1>Bet Track Form</h1>
 
 {% comment %} Start Bet Track {% endcomment %}
+<section class='flex'>
 {% for track in tracks %}
-<div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
+<div class="mt-12 max-w-lg mx-auto grid gap-3 lg:grid-cols-2 lg:max-w-none">
         <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
           <div class="flex-shrink-0">
             <img class="lg:h-20 w-full object-cover" src="https://images-na.ssl-images-amazon.com/images/I/31lVMI998WL.jpg" alt="">
@@ -41,7 +42,10 @@
           </div>
         </div>    
   </div>
+
   {% endfor %}
+  
+  </section>
 {% comment %} Start Adding Bets {% endcomment %}
     
 

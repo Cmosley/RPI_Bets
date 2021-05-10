@@ -7,7 +7,10 @@ from django.contrib.auth.models import User
 from decimal import Decimal
 # Create your models here.
 
-
+SPORTS = (
+  ('MLB', 'Baseball'),
+  ('NHL', 'Hockey')
+  )
 
 class Profile(models.Model): 
   total_bets = models.IntegerField(default=0)
@@ -18,12 +21,19 @@ class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 class BetTrack(models.Model):
+  sport = models.CharField(
+    max_length=3, 
+    choices=SPORTS, 
+    default=SPORTS[0][0]
+  )
+  active = models.BooleanField(default=True)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
-  created = models.DateTimeField('created', auto_now=False, auto_now_add=True)
+  # created = models.DateTimeField('created', auto_now=False, auto_now_add=True)
   # total_bet = models.DecimalField(default=Decimal(0), max_digits=10, decimal_places=2)
   total_bet = models.IntegerField(default=0)
   # total_net = models.DecimalField(default=Decimal(0), max_digits=10, decimal_places=2)
   total_net = models.IntegerField(default=0)
+  
 
   def __str__(self):
       return self.name
@@ -32,10 +42,7 @@ class BetTrack(models.Model):
  
 
 class Bet(models.Model):
-  SPORTS = (
-  ('MLB', 'Baseball'),
-  ('NHL', 'Hockey')
-  )
+  
   BET_TYPES = (
     ('A', 'A Bet'),
     ('B', 'B Bet'),
@@ -50,14 +57,14 @@ class Bet(models.Model):
   bet_type = models.CharField( 
     max_length=50,
     choices=BET_TYPES, 
-    default='A'
+    default=BET_TYPES[0][0]
   )
   start = models.DateTimeField(auto_now=False, auto_now_add=True)
   end = models.DateField()
   sport = models.CharField(
     max_length=3, 
     choices=SPORTS, 
-    default=SPORTS[0]
+    default=SPORTS[0][0]
   )
   home_team = models.CharField(max_length=50)
   away_team = models.CharField(max_length=50)
@@ -67,7 +74,7 @@ class Bet(models.Model):
   won = models.CharField(
     choices=BET_RESULT,
     max_length=50,
-    default=BET_RESULT[0]
+    default=BET_RESULT[0][0]
   )
 
   def __str__(self):
@@ -77,7 +84,7 @@ class Bet(models.Model):
       return reverse("bets_create")
   
 
-  # bet_track = models.ForeignKey(BetTrack, default='', on_delete=models.CASCADE)
+  bet_track = models.ForeignKey(BetTrack, default='', on_delete=models.CASCADE)
 
 
 

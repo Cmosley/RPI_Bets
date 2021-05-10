@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Bet, BetTrack
+from .forms import AddTrack
 
 # Create your views here.
 
@@ -14,10 +15,25 @@ def home(request):
 
 @login_required
 def bets_index(request):
+  tracks = BetTrack.objects.filter(user=request.user)
+  add_track = AddTrack()
   # bets = Bet.objects.filter(user=request.user)
   # betTrack = BetTrack.objects.filter(user=request.user)
-  return render(request, 'bets/index.html',)
-  # {'bettrack': betTrack, 'bets':bets}
+  return render(request, 'bets/index.html', {
+    'add_track': add_track,
+    'tracks': tracks,
+    })
+
+def add_track(request): 
+  form = AddTrack(request.POST)
+  if form.is_valid():
+    new_track = form.save(commit=False)
+    new_track.user = request.user 
+    # new_track.active = True
+    # new_track.total_bet = 0
+    # new_track.total_net = 0
+    new_track.save()
+  return redirect('index')
 
 @login_required
 def bets_track(request):
