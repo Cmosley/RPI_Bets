@@ -16,8 +16,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import django_heroku
-django_heroku.settings(locals())
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -149,3 +148,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # # Add this variable to specify where logging out redirects to
 # LOGOUT_REDIRECT_URL = '/'
 
+import django_on_heroku
+django_on_heroku.settings(locals())
