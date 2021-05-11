@@ -34,9 +34,8 @@ class BetTrack(models.Model):
   # total_net = models.DecimalField(default=Decimal(0), max_digits=10, decimal_places=2)
   total_net = models.IntegerField(default=0)
   
+ 
 
-  def __str__(self):
-      return self.name
   def get_absolute_url(self):
       return reverse("bettrack_create")
  
@@ -78,7 +77,7 @@ class Bet(models.Model):
   )
 
   def __str__(self):
-      return self.name
+      return self.bet_type
   
   def get_absolute_url(self):
       return reverse("bets_create")

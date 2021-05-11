@@ -5,3 +5,8 @@ class AddTrack(ModelForm):
   class Meta: 
     model = BetTrack
     fields = ['sport']
+
+class AddBet(ModelForm):
+  class Meta:
+    model = Bet
+    fields = '__all__'
