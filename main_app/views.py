@@ -15,7 +15,7 @@ def home(request):
 
 @login_required
 def bets_index(request):
-  # bets = Bet.objects.filter(user=request.user)
+  bets = Bet.objects.filter()
   tracks = BetTrack.objects.filter(user=request.user)
   add_track = AddTrack()
   add_bet = AddBet()
@@ -36,11 +36,12 @@ def add_track(request):
     new_track.save()
   return redirect('index')
 
-def add_bet(request):
+def add_bet(request, bet_track_id):
   form = AddBet(request.POST)
+  # if method === 'POST'
   if form.is_valid():
     new_bet = form.save(commit=False)
-    # new_bet_bet_track = some way to get the bet track id 
+    new_bet.bet_track = bet_track_id
     new_bet.save()
   return redirect('index')
 

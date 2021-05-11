@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('bets/', views.bets_index, name='index'),
     path('bets/add_track', views.add_track, name='add_track'),
+    path('bets/<int:track_id>/add_bet', views.add_bet, name='add_bet'),
     path('bets/track', views.bets_track, name='bet_track'),
     path('bets/create', views.BetCreate.as_view(), name='bets_create'),
     path('bettrack/create', views.BetTrackCreate.as_view(), name='bettrack_create'),

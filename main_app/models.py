@@ -34,6 +34,7 @@ class BetTrack(models.Model):
   # total_net = models.DecimalField(default=Decimal(0), max_digits=10, decimal_places=2)
   total_net = models.IntegerField(default=0)
   
+  
  
 
   def get_absolute_url(self):

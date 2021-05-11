@@ -54,10 +54,17 @@
               </div>
               <div class="ml-3">
                 <p class="text-md font-medium text-gray-900">
+                <form action="{% url 'add_bet' track.id %}" method="post">
                   <a class="hover:underline">
                     Create Bet A
                   </a>
-                  {% include "../main_app/bet_form.html" %} 
+                {% comment %} append input children here {% endcomment %}
+
+                </form>
+
+
+                  {% comment %} {% for bet in bets %}
+                  {% endfor %} {% endcomment %}
               </button>
                 </p>
               </div>
