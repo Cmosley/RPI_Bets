@@ -20,7 +20,7 @@ key = os.environ['API_KEY']
 url = "https://therundown-therundown-v1.p.rapidapi.com/"
 headers = {
   'x-rapidapi-host': "therundown-therundown-v1.p.rapidapi.com",
-  #'x-rapidapi-key': key
+  'x-rapidapi-key': key
   }
 # Endpoints
 sports = "sports"

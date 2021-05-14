@@ -235,28 +235,21 @@ Christian is a web developer from Fort Worth, TX. With a passion for business, s
 
 ## Appendix C: Product Screenshots & Images
 
-<a id='appendix-c-picture-001-splash-page-not-logged-in'></a>
+<a id='appendix-c-picture-001-home-page'></a>
 
-**Deployed Splash Page - User Not Logged In | Current**
-![current splash page on deployed site and not logged in](public/images/README-images/deployed-splash-page.png)
-
----
-
-<a id='appendix-c-picture-002-search-results-page-logged-in'></a>
-
-**Deployed Splash Page - User Logged In | Current**
-![current search results page on deployed site](public/images/README-images/deployed-search-results-page.png)
+**Deployed Home Page - | Current**
+![current home page on deployed site and not logged in](main_app/static/home-page.png)
 
 ---
 
-<a id='appendix-c-picture-003-dynamic-search-rendering-logged-in'></a>
+<a id='appendix-c-picture-002-sports-page-logged-in'></a>
 
-**Deployed Splash Page - User Logged In**
-![dynamic search results rednering on deployed site](public/images/README-images/deployed-search-results-page-dynamic-search-rendering.png)
+**Deployed Sports Page - User Logged In | Current**
+![api sports results page on deployed site](main_app/static/sports-page.png)
 
 ---
 
-<a id='appendix-c-picture-004-create-snippet-page-logged-in'></a>
+<a id='appendix-c-picture-003-bets-page-logged-in'></a>
 
-**Deployed Create Snippet Page - User Logged In**
-![create snippet page on deployed site](public/images/README-images/deployed-create-snippet-page.png)
+**Deployed Bets Page - User Logged In**
+![dynamic bets page rednering on deployed site](main_app/static/bets-page.png)

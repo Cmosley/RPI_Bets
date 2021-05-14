@@ -2,7 +2,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-color: yellow;
+  background-color: yellow !important; 
   
 }
 
@@ -11,7 +11,7 @@ main {
 }
 
 footer.page-footer {
-  background-color: yellowgreen;
+  background-color: yellow;
   padding-top: 0;
   text-align: right;
 }
