@@ -1,17 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h1>Sign Up</h1>
-
+<div class='mb-4 flex justify-center'>
+<h1 class='mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl'>Sign Up</h1>
+</div>
 {% if error_message %}
   <p class="text-red-500">{{ error_message }}</p>
 {% endif %}
+<div class='mb-4 flex justify-center items-center'>
 
-<form method="post" action="{% url 'signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500" value="signup">
-  </button>
-</form>
+  <form method="post" action="{% url 'signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class='mt-4 flex justify-center'>
+    <input type="submit" class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-green-500" value="Signup">
+    </input>
+    </div>
+  </form>
+</div> 
+<style>
 
+.helptext{
+  visibility: hidden;
+}
+
+#hint_id_username, #hint_id_password1 {
+         display: none;
+     }
+
+</style>
 {% endblock %}
