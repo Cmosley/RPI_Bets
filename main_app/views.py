@@ -13,6 +13,9 @@ from .forms import AddTrack, AddBet
 def home(request):
   return render(request, 'home.html')
 
+def sports(request):
+  return render(request, 'sports.html')  
+
 @login_required
 def bets_index(request):
   bets = Bet.objects.filter()
