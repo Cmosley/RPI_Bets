@@ -11,6 +11,7 @@ from datetime import date
 import requests
 import os 
 from dotenv import load_dotenv
+import dateutil.parser
 
 #  API INFO 
 load_dotenv()
@@ -19,7 +20,7 @@ key = os.environ['API_KEY']
 url = "https://therundown-therundown-v1.p.rapidapi.com/"
 headers = {
   'x-rapidapi-host': "therundown-therundown-v1.p.rapidapi.com",
-  'x-rapidapi-key': key
+  #'x-rapidapi-key': key
   }
 # Endpoints
 sports = "sports"
@@ -28,11 +29,13 @@ mlb_events = "sports/3/events/"
 # get current day
 today = date.today()
 urlToday = today.strftime("%Y-%m-%d")
-
+crazydate = "2021-05-13T00:10:00Z"
+normaldate = dateutil.parser.isoparse(crazydate)
 # Create your views here.
 
 def home(request):
-  return render(request, 'home.html')
+  date = normaldate
+  return render(request, 'home.html', {'date': date})
 
 def get_lines(line_periods):
   bets = {}
@@ -56,12 +59,14 @@ def sports(request):
   events = []
   for event in response['events']:
       event_data = {}
-      event_data['time'] = event['event_date']    
+      event_data['time'] = dateutil.parser.isoparse(event['event_date'])    
       event_data['place'] =  "{0}, {1}".format(event['score']['venue_name'], event['score']['venue_location'])
       event_data['teams'] = "{0} - {1}".format(event['teams'][1]['name'], event['teams'][0]['name'])
       event_data['bets'] = get_lines(event['line_periods'])
       events.append(event_data)
   return render(request, 'sports.html', {'events' : events})
+
+
 
 @login_required
 def bets_index(request):
@@ -86,14 +91,14 @@ def add_track(request):
     new_track.save()
   return redirect('index')
 
-def add_bet(request, bet_track_id):
+def add_bet(request ):
   form = AddBet(request.POST)
-  # if method === 'POST'
+  tracks = BetTrack.objects.filter(user=request.user)
   if form.is_valid():
     new_bet = form.save(commit=False)
-    new_bet.bet_track = bet_track_id
+    # new_bet.bet_track = bet_track_id
     new_bet.save()
-  return redirect('index')
+  return render(request, 'bet_form.html', {'form':form, 'tracks':tracks})
 
 @login_required
 def bets_track(request):
@@ -109,10 +114,10 @@ class BetTrackCreate(CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-class BetCreate(CreateView):
+class BetCreate(LoginRequiredMixin, CreateView, ):
   model = Bet 
-  fields = ['bet_type', 'end', 'sport','home_team', 
-  'away_team','betting_line', 'bet_amount','won' ] 
+  fields = ['bet_type', 'date', 'sport','home_team', 
+  'away_team','betting_line', 'bet_amount','won' ]
 
   def form_valid(self, form):
     form.instance.user = self.request.user

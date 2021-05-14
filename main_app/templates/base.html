@@ -1,5 +1,6 @@
 {% load static %}
 {% load tailwind_tags %}
+    {% comment %} <form action="{% url 'add_bet' track.id %}" method="post"> {% endcomment %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,12 +56,13 @@
               <img class="" width='100px' src={% static "logo-bg.png" %} alt="RPI-logo">
               </a>
             </div>
+            {% if user.is_authenticated %}
             <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <a href="{% url 'sports' %}" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Sports</a>
 
-              <a href="{% url 'index' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Bets</a>
 
+              <a href="{% url 'index' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Bets</a>
               <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Leaderboards</a>
 
               
@@ -68,6 +70,7 @@
           </div>
           <div class="flex items-center">
             <div class="flex-shrink-0">
+            <a href="{% url 'bets_create' %}"
               <button type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">
                 <!-- Heroicon name: solid/plus -->
                 <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -75,10 +78,16 @@
                 </svg>
                 <span>New Bet</span>
               </button>
+            </a>
             </div>
+            <div class="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
+            <a href="{% url 'logout' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log Out</a>
+            {% else %}
             <div class="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
             <a href="{% url 'login' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
             <a href="{% url 'signup' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sign Up</a>
+            {% endif %}
+
               </div>
             </div>
           </div>

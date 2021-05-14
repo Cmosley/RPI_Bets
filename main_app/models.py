@@ -9,7 +9,6 @@ from decimal import Decimal
 
 SPORTS = (
   ('MLB', 'Baseball'),
-  ('NHL', 'Hockey')
   )
 
 class Profile(models.Model): 
@@ -59,8 +58,7 @@ class Bet(models.Model):
     choices=BET_TYPES, 
     default=BET_TYPES[0][0]
   )
-  start = models.DateTimeField(auto_now=False, auto_now_add=True)
-  end = models.DateField()
+  date = models.DateTimeField(auto_now=False, auto_now_add=False)
   sport = models.CharField(
     max_length=3, 
     choices=SPORTS, 
