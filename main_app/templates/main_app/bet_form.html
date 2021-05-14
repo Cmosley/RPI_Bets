@@ -5,7 +5,7 @@
   
 <div class='mb-4 flex justify-center'>
   {% if object %}
-    <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+    <h1 class='mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl'>Edit 
   {% else %}
    
     <h1 class='mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl'>Create Bet</h1>
@@ -20,7 +20,11 @@
       <!-- Render the inputs inside of <tr>s & <td>s -->
       {{ form.as_table }}
     </table>
-    <input type="submit" value="Submit!" class="btn">
+    <div class='mt-4 flex justify-center'>
+    
+    <input type="submit" value="Create" class="flex justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md  text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500">
+  
+  </div>
   </form> 
   </div>
 {% endblock %}

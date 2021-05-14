@@ -124,6 +124,14 @@ class BetCreate(LoginRequiredMixin, CreateView, ):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
+class BetUpdate(LoginRequiredMixin, UpdateView):
+  model = Bet
+  fields = ['won']
+
+class BetDelete(LoginRequiredMixin, DeleteView):
+  model = Bet
+  success_url = '/bets/'
+
 
 def signup(request):
   error_message = ''

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='mb-4 flex justify-center'>
+  
+  <h1 class='mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl'>Delete Bet</h1>
+  
+</div>
+  <br>
+  <div class='mb-4 flex justify-center'>
+  <h4 class='mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl'>Are you sure you want to delete ?</h4>
+  </div>
+  <div class='mb-4 flex justify-center'>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete" class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-red-500">
+    <div class='mb-4 flex justify-center'>
+    <a href="{% url 'index' %}">Cancel</a>
+    </div>
+  </form>
+  </div>
+{% endblock %}
