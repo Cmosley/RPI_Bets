@@ -58,6 +58,7 @@ class Bet(models.Model):
     choices=BET_TYPES, 
     default=BET_TYPES[0][0]
   )
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
   date = models.DateTimeField(auto_now=False, auto_now_add=False)
   sport = models.CharField(
     max_length=3, 
@@ -82,7 +83,7 @@ class Bet(models.Model):
       return reverse("bets_create")
   
 
-  bet_track = models.ForeignKey(BetTrack, default='', on_delete=models.CASCADE)
+  # bet_track = models.ForeignKey(BetTrack, default='', on_delete=models.CASCADE)
 
 
 

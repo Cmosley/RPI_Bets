@@ -3,26 +3,16 @@
 {% block content %}
   <!-- Leaving the action empty makes the form post to the same url used to display it -->
   
-
+<div class='mb-4 flex justify-center'>
   {% if object %}
     <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
   {% else %}
-  <div class="relative max-w-7xl mx-auto">
-      <div class="text-center">
-        <select name='sport'>
-        {% for track in tracks %}
-              <option value='{{ track.id }}'>MLB</option>
-              
-        {% endfor %}
-        </select>
-      </div>
-  </div>
-  
-    <h1>Create Bet</h1>
+   
+    <h1 class='mt-2 text-black text-3xl font-extrabold tracking-tight sm:text-4xl'>Create Bet</h1>
   {% endif %}
-
+ </div>
   
-
+  <div class='flex justify-center'>
   <form action="" method="post">
     <!-- Django requires the following for security purposes -->
     {% csrf_token %}
@@ -32,4 +22,5 @@
     </table>
     <input type="submit" value="Submit!" class="btn">
   </form> 
+  </div>
 {% endblock %}

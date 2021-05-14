@@ -70,7 +70,7 @@ def sports(request):
 
 @login_required
 def bets_index(request):
-  bets = Bet.objects.filter()
+  bets = Bet.objects.filter(user=request.user)
   tracks = BetTrack.objects.filter(user=request.user)
   add_track = AddTrack()
   add_bet = AddBet()
@@ -80,7 +80,7 @@ def bets_index(request):
     'add_track': add_track,
     'add_bet': add_bet,
     'tracks': tracks,
-    # 'bets':bets
+    'bets': bets,
     })
 
 def add_track(request): 
@@ -91,14 +91,14 @@ def add_track(request):
     new_track.save()
   return redirect('index')
 
-def add_bet(request ):
-  form = AddBet(request.POST)
-  tracks = BetTrack.objects.filter(user=request.user)
-  if form.is_valid():
-    new_bet = form.save(commit=False)
-    # new_bet.bet_track = bet_track_id
-    new_bet.save()
-  return render(request, 'bet_form.html', {'form':form, 'tracks':tracks})
+# def add_bet(request, bet_track_id):
+#   form = AddBet(request.POST)
+#   tracks = BetTrack.objects.filter(user=request.user)
+#   if form.is_valid():
+#     new_bet = form.save(commit=False)
+#     new_bet.bet_track = bet_track_id
+#     new_bet.save()
+#   return render(request, 'bet_form.html', {'form':form, 'tracks':tracks})
 
 @login_required
 def bets_track(request):
@@ -118,7 +118,8 @@ class BetCreate(LoginRequiredMixin, CreateView, ):
   model = Bet 
   fields = ['bet_type', 'date', 'sport','home_team', 
   'away_team','betting_line', 'bet_amount','won' ]
-
+  extra_context={'tracks': BetTrack.objects.all()}
+  success_url = '/bets/'
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)

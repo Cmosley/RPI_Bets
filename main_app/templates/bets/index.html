@@ -54,16 +54,9 @@
               <div class="ml-3">
                 <p class="text-md font-medium text-gray-900">
                     Create Bet 
-                </a>
-                  
-
-                </form>
-
-
-                  {% comment %} {% for bet in bets %}
-                  {% endfor %} {% endcomment %}
-              </button>
                 </p>
+                </a> 
+              </button>
               </div>
             </div>
           </div>
@@ -71,48 +64,46 @@
       </div>
 
       {% comment %} BET Divs Start here {% endcomment %}
+      {% for bet in bets %}
+      <div class="mt-12 w-4/5 mx-auto grid gap-3 lg:grid-cols-1 lg:max-w-none">
+        <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+          <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+            <div class="flex-1">
+                {% comment %} on button press, append track_id input here {% endcomment %}
+                <p class="text-xl font-semibold text-gray-900">
+                  Start: {{bet.date}}
+                </p>
+                <input type= value='start'>
+                <p class="text-xl font-semibold text-gray-900">
+                  Bet Type: {{bet.bet_type}}
+                </p>
+                <p class="text-xl font-semibold text-gray-900">
+                  Home Team: {{bet.home_team}}
+                </p>
+                <p class="text-xl font-semibold text-gray-900">
+                  Away Team: {{bet.away_team}}
+                </p>
+                <p class="text-xl font-semibold text-gray-900">
+                  Bet Line: {{bet.betting_line}}
+                </p>
+                <p class="text-xl font-semibold text-gray-900">
+                  Bet Amount: {{bet.bet_amount}}
+                </p>
+                <p class="text-xl font-semibold text-gray-900">
+                  Won: {{bet.won}}
+                </p>
+            </div>
+          <input type="submit" value="Save" class="btn">
+          </div>
+      {% endfor %}
 
-      
 
       {% endfor %}
       <div>
-        
+      
       </div>
     </section>
-      {% comment %} <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
-        <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-          <div class="flex-shrink-0">
-            <img class="lg:h-20 w-full object-cover" src="https://images-na.ssl-images-amazon.com/images/I/31lVMI998WL.jpg" alt="">
-          </div>
-          <div class="flex-1 bg-white p-6 flex flex-col justify-between">
-            <div class="flex-1">
-                <p class="text-xl font-semibold text-gray-900">
-                  Total Bet: 
-                </p>
-                <p class="text-xl font-semibold text-gray-900">
-                   Total Net Winnings: 
-                </p>
-            </div>
-            <div class="mt-6 flex items-center">
-              <div class="flex-shrink-0">
-                <a href="#">
-                  <span class="sr-only">Create Bet A</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                 </svg>
-                </a>
-              </div>
-              <div class="ml-3">
-                <p class="text-md font-medium text-gray-900">
-                  <a href="#" class="hover:underline">
-                    Create Bet A
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>        
-      </div> {% endcomment %}
+      
     </div>
   </div>
 

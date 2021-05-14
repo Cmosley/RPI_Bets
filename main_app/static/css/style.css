@@ -23,7 +23,8 @@ footer.page-footer {
   grid-row-gap: 50px;
   grid-column-gap: 50px;
   }
- .grid-item {
+  
+.grid-item {
   padding: 20px;
   width: auto;
   }
